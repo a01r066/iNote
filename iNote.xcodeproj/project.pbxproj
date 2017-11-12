@@ -7,14 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6EB7BAEAECE72884F6AE68C9 /* Pods_iNote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0908388BC57617358BBAD688 /* Pods_iNote.framework */; };
 		70795CC01FB68C4C001C082C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70795CBF1FB68C4C001C082C /* AppDelegate.swift */; };
 		70795CC21FB68C4C001C082C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70795CC11FB68C4C001C082C /* ViewController.swift */; };
 		70795CC51FB68C4C001C082C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70795CC31FB68C4C001C082C /* Main.storyboard */; };
 		70795CC71FB68C4C001C082C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70795CC61FB68C4C001C082C /* Assets.xcassets */; };
 		70795CCA1FB68C4C001C082C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70795CC81FB68C4C001C082C /* LaunchScreen.storyboard */; };
+		70795CD21FB6929B001C082C /* CustomNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70795CD11FB6929B001C082C /* CustomNavController.swift */; };
+		70795CD41FB6A852001C082C /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70795CD31FB6A852001C082C /* UIColor+Theme.swift */; };
+		70795CD91FB6CF9A001C082C /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70795CD81FB6CF99001C082C /* Company.swift */; };
+		70795CDB1FB6D246001C082C /* CreateCompanyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70795CDA1FB6D246001C082C /* CreateCompanyController.swift */; };
+		70CFD3F51FB893500072A4E9 /* INoteDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70CFD3F31FB8934F0072A4E9 /* INoteDataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0908388BC57617358BBAD688 /* Pods_iNote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iNote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5251C3C3D15DF62A3C2D696A /* Pods-iNote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iNote.release.xcconfig"; path = "Pods/Target Support Files/Pods-iNote/Pods-iNote.release.xcconfig"; sourceTree = "<group>"; };
 		70795CBC1FB68C4B001C082C /* iNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70795CBF1FB68C4C001C082C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70795CC11FB68C4C001C082C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +30,12 @@
 		70795CC61FB68C4C001C082C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70795CC91FB68C4C001C082C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		70795CCB1FB68C4C001C082C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70795CD11FB6929B001C082C /* CustomNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavController.swift; sourceTree = "<group>"; };
+		70795CD31FB6A852001C082C /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
+		70795CD81FB6CF99001C082C /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		70795CDA1FB6D246001C082C /* CreateCompanyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyController.swift; sourceTree = "<group>"; };
+		70CFD3F41FB8934F0072A4E9 /* INoteDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = INoteDataModel.xcdatamodel; sourceTree = "<group>"; };
+		98E2624EE6E138423F5DA75F /* Pods-iNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iNote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iNote/Pods-iNote.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +43,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EB7BAEAECE72884F6AE68C9 /* Pods_iNote.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39D73979C917E78E9EC454AF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0908388BC57617358BBAD688 /* Pods_iNote.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		70795CB31FB68C4B001C082C = {
 			isa = PBXGroup;
 			children = (
 				70795CBE1FB68C4B001C082C /* iNote */,
 				70795CBD1FB68C4B001C082C /* Products */,
+				CA7DE0E892515C23DE847F25 /* Pods */,
+				39D73979C917E78E9EC454AF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +79,52 @@
 		70795CBE1FB68C4B001C082C /* iNote */ = {
 			isa = PBXGroup;
 			children = (
+				70795CD71FB6CF86001C082C /* Model */,
+				70795CD61FB6CF81001C082C /* View */,
+				70795CD51FB6CF79001C082C /* Controller */,
 				70795CBF1FB68C4C001C082C /* AppDelegate.swift */,
-				70795CC11FB68C4C001C082C /* ViewController.swift */,
 				70795CC31FB68C4C001C082C /* Main.storyboard */,
 				70795CC61FB68C4C001C082C /* Assets.xcassets */,
 				70795CC81FB68C4C001C082C /* LaunchScreen.storyboard */,
 				70795CCB1FB68C4C001C082C /* Info.plist */,
+				70795CD31FB6A852001C082C /* UIColor+Theme.swift */,
+				70CFD3F31FB8934F0072A4E9 /* INoteDataModel.xcdatamodeld */,
 			);
 			path = iNote;
+			sourceTree = "<group>";
+		};
+		70795CD51FB6CF79001C082C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				70795CC11FB68C4C001C082C /* ViewController.swift */,
+				70795CD11FB6929B001C082C /* CustomNavController.swift */,
+				70795CDA1FB6D246001C082C /* CreateCompanyController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		70795CD61FB6CF81001C082C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		70795CD71FB6CF86001C082C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				70795CD81FB6CF99001C082C /* Company.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA7DE0E892515C23DE847F25 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				98E2624EE6E138423F5DA75F /* Pods-iNote.debug.xcconfig */,
+				5251C3C3D15DF62A3C2D696A /* Pods-iNote.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +134,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 70795CCE1FB68C4C001C082C /* Build configuration list for PBXNativeTarget "iNote" */;
 			buildPhases = (
+				CC1608B5B22D2163CB016645 /* [CP] Check Pods Manifest.lock */,
 				70795CB81FB68C4B001C082C /* Sources */,
 				70795CB91FB68C4B001C082C /* Frameworks */,
 				70795CBA1FB68C4B001C082C /* Resources */,
+				48D0E812A3321F1444BCBA1A /* [CP] Embed Pods Frameworks */,
+				E42B72D57946373D6D93DE75 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,13 +197,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		48D0E812A3321F1444BCBA1A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iNote/Pods-iNote-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC1608B5B22D2163CB016645 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E42B72D57946373D6D93DE75 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iNote/Pods-iNote-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		70795CB81FB68C4B001C082C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70CFD3F51FB893500072A4E9 /* INoteDataModel.xcdatamodeld in Sources */,
 				70795CC21FB68C4C001C082C /* ViewController.swift in Sources */,
+				70795CD41FB6A852001C082C /* UIColor+Theme.swift in Sources */,
+				70795CD21FB6929B001C082C /* CustomNavController.swift in Sources */,
+				70795CD91FB6CF9A001C082C /* Company.swift in Sources */,
 				70795CC01FB68C4C001C082C /* AppDelegate.swift in Sources */,
+				70795CDB1FB6D246001C082C /* CreateCompanyController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,11 +391,12 @@
 		};
 		70795CCF1FB68C4C001C082C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98E2624EE6E138423F5DA75F /* Pods-iNote.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZQH587T855;
 				INFOPLIST_FILE = iNote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = top.ypages.iNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -287,11 +407,12 @@
 		};
 		70795CD01FB68C4C001C082C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5251C3C3D15DF62A3C2D696A /* Pods-iNote.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZQH587T855;
 				INFOPLIST_FILE = iNote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = top.ypages.iNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -322,6 +443,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		70CFD3F31FB8934F0072A4E9 /* INoteDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				70CFD3F41FB8934F0072A4E9 /* INoteDataModel.xcdatamodel */,
+			);
+			currentVersion = 70CFD3F41FB8934F0072A4E9 /* INoteDataModel.xcdatamodel */;
+			path = INoteDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 70795CB41FB68C4B001C082C /* Project object */;
 }

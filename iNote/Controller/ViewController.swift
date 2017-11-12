@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class ViewController: UITableViewController {
+class ViewController: UITableViewController, CreateCompanyControllerDelegate {
     let cellId = "cellId"
     var companies: [Company] = []
     
@@ -29,13 +30,32 @@ class ViewController: UITableViewController {
     }
     
     func fetchCompanies(){
-        companies = [
-            Company(json: ["id": "cp1001", "name": "Google Inc", "imageURL": "https://www.google.com.vn/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"])!,
-            Company(json: ["id": "cp1002", "name": "Apple Inc", "imageURL": "https://www.google.com.vn/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"])!,
-            Company(json: ["id": "cp1003", "name": "Yahoo Inc", "imageURL": "https://www.google.com.vn/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"])!,
-            Company(json: ["id": "cp1004", "name": "Facebook Inc", "imageURL": "https://www.google.com.vn/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"])!,
-            Company(json: ["id": "cp1005", "name": "Microsoft Inc", "imageURL": "https://www.google.com.vn/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"])!
-        ]
+        // initialization core data stack
+        let persistentContainer = NSPersistentContainer(name: "INoteDataModel")
+        persistentContainer.loadPersistentStores { (storeDesc, err) in
+            if let err = err {
+                fatalError("Loading of store failed. \(err)")
+            }
+        }
+
+        let context = persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<Company>(entityName: "Company")
+        
+        do {
+            let companies = try context.fetch(fetchRequest)
+            companies.forEach({ (company) in
+                print(company.name ?? "")
+            })
+        } catch let fetchErr {
+            fatalError("Fetch store failed. \(fetchErr)")
+        }
+    }
+    
+    func didAddCompany(company: Company) {
+//        companies.append(company)
+//        let newIndexPath = IndexPath(row: companies.count-1, section: 0)
+//        tableView.insertRows(at: [newIndexPath], with: .automatic)
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -64,6 +84,7 @@ class ViewController: UITableViewController {
     
     @objc func handleAddCompany(){
         let createCompanyVC = CreateCompanyController()
+        createCompanyVC.delegate = self
         let navController = CustomNavController(rootViewController: createCompanyVC)
         present(navController, animated: true, completion: nil)
     }

@@ -13,10 +13,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        window = UIWindow()
+        window?.makeKeyAndVisible()
+        
+        // setup navigation bar style
+        setNavBarStyle()
+        
+        let companiesVC = ViewController()
+        window?.rootViewController = CustomNavController(rootViewController: companiesVC)
+        
         return true
+    }
+    
+    func setNavBarStyle(){
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        UINavigationBar.appearance().barTintColor = .lightRed
+        
+        if #available(iOS 11.0, *) {
+            UINavigationBar.appearance().prefersLargeTitles = true
+            UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        } else {
+            // Fallback on earlier versions
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
