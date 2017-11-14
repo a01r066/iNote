@@ -30,15 +30,7 @@ class ViewController: UITableViewController, CreateCompanyControllerDelegate {
     }
     
     func fetchCompanies(){
-        // initialization core data stack
-        let persistentContainer = NSPersistentContainer(name: "INoteDataModel")
-        persistentContainer.loadPersistentStores { (storeDesc, err) in
-            if let err = err {
-                fatalError("Loading of store failed. \(err)")
-            }
-        }
-
-        let context = persistentContainer.viewContext
+        let context = CoreDataManager.shared.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<Company>(entityName: "Company")
         
@@ -47,15 +39,23 @@ class ViewController: UITableViewController, CreateCompanyControllerDelegate {
             companies.forEach({ (company) in
                 print(company.name ?? "")
             })
+            self.companies = companies
+            tableView.reloadData()
         } catch let fetchErr {
             fatalError("Fetch store failed. \(fetchErr)")
         }
     }
     
+    func didEditCompany(company: Company) {
+        let row = companies.index(of: company)
+        let indexPath = IndexPath(row: row!, section: 0)
+        tableView.reloadRows(at: [indexPath], with: .middle)
+    }
+    
     func didAddCompany(company: Company) {
-//        companies.append(company)
-//        let newIndexPath = IndexPath(row: companies.count-1, section: 0)
-//        tableView.insertRows(at: [newIndexPath], with: .automatic)
+        companies.append(company)
+        let newIndexPath = IndexPath(row: companies.count-1, section: 0)
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -80,6 +80,47 @@ class ViewController: UITableViewController, CreateCompanyControllerDelegate {
         cell.textLabel?.text = company.name
         cell.textLabel?.textColor = UIColor.white
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Edit", handler: deleteActionHandler)
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: editActionHandler)
+        
+        deleteAction.backgroundColor = UIColor.lightRed
+        editAction.backgroundColor = UIColor.darkBlue
+        
+        return [deleteAction, editAction]
+    }
+    
+    func deleteActionHandler(action: UITableViewRowAction, indexPath: IndexPath){
+        // delete from tableview
+        self.companies.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        
+        // delete from core data
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        
+        let company = companies[indexPath.row]
+        context.delete(company)
+        
+        do {
+            try context.save()
+        } catch let saveErr {
+            fatalError("Delete item failed: \(saveErr)")
+        }
+    }
+    
+    func editActionHandler(action: UITableViewRowAction, indexPath: IndexPath){
+        let company = companies[indexPath.row]
+        print("Attempt to edit company: \(company.name ?? "")")
+        
+        let createCompanyController = CreateCompanyController()
+        createCompanyController.delegate = self
+        createCompanyController.company = company
+        
+        let navController = CustomNavController(rootViewController: createCompanyController)
+        present(navController, animated: true, completion: nil)
+        
     }
     
     @objc func handleAddCompany(){

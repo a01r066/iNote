@@ -12,10 +12,17 @@ import CoreData
 
 protocol CreateCompanyControllerDelegate {
     func didAddCompany(company: Company)
+    func didEditCompany(company: Company)
 }
 
 class CreateCompanyController: UIViewController {
     var delegate: CreateCompanyControllerDelegate?
+    
+    var company: Company? {
+        didSet{
+            nameTf.text = company?.name
+        }
+    }
     
     let viewContainer: UIView = {
        let mView = UIView()
@@ -81,32 +88,48 @@ class CreateCompanyController: UIViewController {
         
         view.backgroundColor = UIColor.darkBlue
         
-        navigationItem.title = "Create Company"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleBack))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.title = company == nil ? "Create Company" : "Edit Company"
+    }
+    
     @objc func handleSave(){
-//        dismiss(animated: true) {
-//            guard let name = self.nameTf.text else { return }
-//            let company = Company(json: ["id": "cp1001", "name": name, "imageURL": "https://www.google.com.vn/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"])
-//            self.delegate?.didAddCompany(company: company!)
-//        }
-        
-        // initialization core data stack
-        let persistentContainer = NSPersistentContainer(name: "INoteDataModel")
-        persistentContainer.loadPersistentStores { (storeDesc, err) in
-            if let err = err {
-                fatalError("Loading of store failed. \(err)")
-            }
+        if company == nil {
+            createCompany()
+        } else {
+            updateCompany()
         }
-        let context = persistentContainer.viewContext
+    }
+    
+    private func createCompany(){
+        let context = CoreDataManager.shared.persistentContainer.viewContext
         let company = NSEntityDescription.insertNewObject(forEntityName: "Company", into: context)
         company.setValue(nameTf.text, forKey: "name")
         
         // perform the save
         do {
             try context.save()
+            dismiss(animated: true, completion: {
+                self.delegate?.didAddCompany(company: company as! Company)
+            })
+        } catch let saveErr {
+            fatalError("Save error. \(saveErr)")
+        }
+    }
+    
+    private func updateCompany(){
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        company?.name = nameTf.text
+        // perform the save
+        do {
+            try context.save()
+            dismiss(animated: true, completion: {
+                self.delegate?.didEditCompany(company: self.company!)
+            })
         } catch let saveErr {
             fatalError("Save error. \(saveErr)")
         }
