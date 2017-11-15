@@ -19,6 +19,7 @@
 		70795CDB1FB6D246001C082C /* CreateCompanyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70795CDA1FB6D246001C082C /* CreateCompanyController.swift */; };
 		70CFD3F51FB893500072A4E9 /* INoteDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70CFD3F31FB8934F0072A4E9 /* INoteDataModel.xcdatamodeld */; };
 		70CFD3F81FB8AA1E0072A4E9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CFD3F71FB8AA1E0072A4E9 /* CoreDataManager.swift */; };
+		70F7F4FD1FBAC82400EC1BC5 /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7F4FC1FBAC82400EC1BC5 /* DateExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		70795CDA1FB6D246001C082C /* CreateCompanyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyController.swift; sourceTree = "<group>"; };
 		70CFD3F41FB8934F0072A4E9 /* INoteDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = INoteDataModel.xcdatamodel; sourceTree = "<group>"; };
 		70CFD3F71FB8AA1E0072A4E9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		70F7F4FC1FBAC82400EC1BC5 /* DateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
 		98E2624EE6E138423F5DA75F /* Pods-iNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iNote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iNote/Pods-iNote.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,6 +65,7 @@
 		70795CB31FB68C4B001C082C = {
 			isa = PBXGroup;
 			children = (
+				70F7F4FB1FBAC80400EC1BC5 /* Extension */,
 				70795CBE1FB68C4B001C082C /* iNote */,
 				70795CBD1FB68C4B001C082C /* Products */,
 				CA7DE0E892515C23DE847F25 /* Pods */,
@@ -119,6 +122,14 @@
 				70795CD81FB6CF99001C082C /* Company.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		70F7F4FB1FBAC80400EC1BC5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				70F7F4FC1FBAC82400EC1BC5 /* DateExt.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		CA7DE0E892515C23DE847F25 /* Pods */ = {
@@ -261,6 +272,7 @@
 				70795CD91FB6CF9A001C082C /* Company.swift in Sources */,
 				70795CC01FB68C4C001C082C /* AppDelegate.swift in Sources */,
 				70795CDB1FB6D246001C082C /* CreateCompanyController.swift in Sources */,
+				70F7F4FD1FBAC82400EC1BC5 /* DateExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

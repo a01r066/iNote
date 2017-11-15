@@ -77,13 +77,24 @@ class ViewController: UITableViewController, CreateCompanyControllerDelegate {
         cell.backgroundColor = .tealColor
         
         let company = companies[indexPath.row]
-        cell.textLabel?.text = company.name
+        
+        if let founded = company.founded {
+            cell.textLabel?.text = "\(company.name!) - Founded: \(founded.formatDate())"
+        } else {
+            cell.textLabel?.text = company.name
+        }
         cell.textLabel?.textColor = UIColor.white
+        
+        if let imageData = company.imageData {
+            let image = UIImage(data: imageData)
+            cell.imageView?.image = image
+        }
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Edit", handler: deleteActionHandler)
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteActionHandler)
         let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: editActionHandler)
         
         deleteAction.backgroundColor = UIColor.lightRed
@@ -94,13 +105,14 @@ class ViewController: UITableViewController, CreateCompanyControllerDelegate {
     
     func deleteActionHandler(action: UITableViewRowAction, indexPath: IndexPath){
         // delete from tableview
+        let company = companies[indexPath.row]
         self.companies.remove(at: indexPath.row)
+        
         tableView.deleteRows(at: [indexPath], with: .automatic)
         
         // delete from core data
         let context = CoreDataManager.shared.persistentContainer.viewContext
         
-        let company = companies[indexPath.row]
         context.delete(company)
         
         do {

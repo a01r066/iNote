@@ -15,12 +15,18 @@ protocol CreateCompanyControllerDelegate {
     func didEditCompany(company: Company)
 }
 
-class CreateCompanyController: UIViewController {
+class CreateCompanyController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     var delegate: CreateCompanyControllerDelegate?
     
     var company: Company? {
         didSet{
             nameTf.text = company?.name
+            guard let founded = company?.founded else { return }
+            datePickerDP.date = founded
+            
+//            if let imageData = company?.imageData {
+//                photoIv.image = UIImage(data: imageData)
+//            }
         }
     }
     
@@ -29,6 +35,39 @@ class CreateCompanyController: UIViewController {
         mView.backgroundColor = UIColor.lightBlue
         return mView
     }()
+    
+    lazy var photoIv: UIImageView = {
+       let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.layer.masksToBounds = true
+        iv.layer.cornerRadius = (view.frame.width/4)/2
+        iv.image = UIImage(named: "select_photo_empty")
+        iv.isUserInteractionEnabled = true
+        iv.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectPhoto)))
+        return iv
+    }()
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        dismiss(animated: true) {
+            if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+                self.photoIv.image = editedImage
+            } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+                self.photoIv.image = originalImage
+            }
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func handleSelectPhoto(){
+        print("Add photo")
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
+    }
     
     let nameLbl: UILabel = {
         let lbl = UILabel()
@@ -50,7 +89,7 @@ class CreateCompanyController: UIViewController {
     
     let foundedDateLbl: UILabel = {
        let lbl = UILabel()
-        lbl.text = "Oct 23, 2017"
+        lbl.text = "\(Date())"
         return lbl
     }()
     
@@ -63,23 +102,24 @@ class CreateCompanyController: UIViewController {
     }()
     
     @objc func handleDatePicker(){
-        print("Date")
-    }
-    
-    @objc func handleCancel(){
-        print("Cancel")
-        
-    }
-    
-    @objc func handleDone(){
-        print("Done")
+        view.addSubview(datePickerDP)
+        datePickerDP.snp.makeConstraints { (dpSnp) in
+            dpSnp.top.equalTo(foundedLbl.snp.bottom).offset(12)
+            dpSnp.left.right.equalToSuperview()
+            dpSnp.height.equalTo(view.frame.height/4)
+        }
     }
     
     let datePickerDP: UIDatePicker = {
        let dp = UIDatePicker()
         dp.datePickerMode = .date
+        dp.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
         return dp
     }()
+    
+    @objc func datePickerChanged (){
+        foundedDateLbl.text = datePickerDP.date.formatDate()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +134,13 @@ class CreateCompanyController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         navigationItem.title = company == nil ? "Create Company" : "Edit Company"
+        foundedDateLbl.text = company == nil ? "\(Date().formatDate())" : "\(company?.founded?.formatDate() ?? Date().formatDate())"
+        
+        if let imageData = company?.imageData {
+            photoIv.image = UIImage(data: imageData)
+        }
     }
     
     @objc func handleSave(){
@@ -109,6 +155,13 @@ class CreateCompanyController: UIViewController {
         let context = CoreDataManager.shared.persistentContainer.viewContext
         let company = NSEntityDescription.insertNewObject(forEntityName: "Company", into: context)
         company.setValue(nameTf.text, forKey: "name")
+        company.setValue(datePickerDP.date, forKey: "founded")
+        
+        // save image to core data
+        if let image = photoIv.image {
+            let imageData = UIImageJPEGRepresentation(image, 0.5)
+            company.setValue(imageData, forKey: "imageData")
+        }
         
         // perform the save
         do {
@@ -124,6 +177,13 @@ class CreateCompanyController: UIViewController {
     private func updateCompany(){
         let context = CoreDataManager.shared.persistentContainer.viewContext
         company?.name = nameTf.text
+        company?.founded = datePickerDP.date
+        
+        if let image = photoIv.image {
+            let imageData = UIImageJPEGRepresentation(image, 0.5)
+            company?.imageData = imageData
+        }
+        
         // perform the save
         do {
             try context.save()
@@ -145,6 +205,13 @@ class CreateCompanyController: UIViewController {
             viewContainerSnp.top.bottom.left.right.equalToSuperview()
         }
         
+        viewContainer.addSubview(photoIv)
+        photoIv.snp.makeConstraints { (photoIvSnp) in
+            photoIvSnp.top.equalToSuperview().offset(16)
+            photoIvSnp.centerX.equalToSuperview()
+            photoIvSnp.width.height.equalTo(view.frame.width/4)
+        }
+        
         // name
         let nameStackView = UIStackView(arrangedSubviews: [nameLbl, nameTf])
         nameLbl.snp.makeConstraints { (nameLblSnp) in
@@ -154,7 +221,7 @@ class CreateCompanyController: UIViewController {
         nameStackView.axis = .horizontal
         viewContainer.addSubview(nameStackView)
         nameStackView.snp.makeConstraints { (nameSnp) in
-            nameSnp.top.equalToSuperview().offset(16)
+            nameSnp.top.equalTo(photoIv.snp.bottom).offset(16)
             nameSnp.left.equalToSuperview().offset(12)
             nameSnp.right.equalToSuperview().offset(-12)
         }
