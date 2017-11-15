@@ -16,17 +16,49 @@ class ViewController: UITableViewController, CreateCompanyControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.register(CompanyCell.self, forCellReuseIdentifier: cellId)
+        
         fetchCompanies()
         
         view.backgroundColor = UIColor.white
         navigationItem.title = "Companies"
         
         tableView.backgroundColor = .darkBlue
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "plus")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleAddCompany))
         
         tableView.tableFooterView = UIView()
+    }
+    
+    @objc private func handleReset(){
+        print("Attempt to reset data")
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        
+        // cach 1
+//        companies.forEach { (company) in
+//            context.delete(company)
+//        }
+        
+        // cach 2
+        // make row animation when delete
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Company.fetchRequest())
+        do {
+            try context.execute(batchDeleteRequest)
+            
+            var indexPathsToRemove = [IndexPath]([])
+            for(index, _) in companies.enumerated(){
+                let indexPath = IndexPath(row: index, section: 0)
+                indexPathsToRemove.append(indexPath)
+            }
+            
+            companies.removeAll()
+            tableView.deleteRows(at: indexPathsToRemove, with: .left)
+            
+            tableView.reloadData()
+        } catch let delErr {
+            fatalError("Delete failed. \(delErr)")
+        }
     }
     
     func fetchCompanies(){
@@ -58,6 +90,19 @@ class ViewController: UITableViewController, CreateCompanyControllerDelegate {
         tableView.insertRows(at: [newIndexPath], with: .automatic)
     }
     
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let status = UILabel()
+        status.text = "No data..."
+        status.textAlignment = .center
+        status.textColor = UIColor.white
+        status.font = UIFont.boldSystemFont(ofSize: 16)
+        return status
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return companies.count == 0 ? 150 : 0
+    }
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = .lightBlue
@@ -73,24 +118,28 @@ class ViewController: UITableViewController, CreateCompanyControllerDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = .tealColor
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CompanyCell
         
         let company = companies[indexPath.row]
+        cell.company = company
         
-        if let founded = company.founded {
-            cell.textLabel?.text = "\(company.name!) - Founded: \(founded.formatDate())"
-        } else {
-            cell.textLabel?.text = company.name
-        }
-        cell.textLabel?.textColor = UIColor.white
-        
-        if let imageData = company.imageData {
-            let image = UIImage(data: imageData)
-            cell.imageView?.image = image
-        }
+//        if let founded = company.founded {
+//            cell.textLabel?.text = "\(company.name!) - Founded: \(founded.formatDate())"
+//        } else {
+//            cell.textLabel?.text = company.name
+//        }
+//        cell.textLabel?.textColor = UIColor.white
+//
+//        if let imageData = company.imageData {
+//            let image = UIImage(data: imageData)
+//            cell.imageView?.image = image
+//        }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
