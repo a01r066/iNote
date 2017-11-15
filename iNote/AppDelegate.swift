@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // setup navigation bar style
         setNavBarStyle()
         
-        let companiesVC = ViewController()
+        let companiesVC = CompanyController()
         window?.rootViewController = CustomNavController(rootViewController: companiesVC)
         
         return true

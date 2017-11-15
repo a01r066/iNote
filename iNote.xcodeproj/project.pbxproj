@@ -10,8 +10,10 @@
 		6EB7BAEAECE72884F6AE68C9 /* Pods_iNote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0908388BC57617358BBAD688 /* Pods_iNote.framework */; };
 		7056E7B51FBC0BF3008B503C /* UINavigationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7056E7B41FBC0BF3008B503C /* UINavigationExt.swift */; };
 		706F6A7D1FBC2FE0000235E0 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F6A7C1FBC2FE0000235E0 /* CompanyCell.swift */; };
+		706F6A7F1FBC3FF0000235E0 /* CompanyController+CreateCompanyControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F6A7E1FBC3FF0000235E0 /* CompanyController+CreateCompanyControllerDelegate.swift */; };
+		706F6A811FBC411A000235E0 /* CompanyController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F6A801FBC411A000235E0 /* CompanyController+UITableView.swift */; };
 		70795CC01FB68C4C001C082C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70795CBF1FB68C4C001C082C /* AppDelegate.swift */; };
-		70795CC21FB68C4C001C082C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70795CC11FB68C4C001C082C /* ViewController.swift */; };
+		70795CC21FB68C4C001C082C /* CompanyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70795CC11FB68C4C001C082C /* CompanyController.swift */; };
 		70795CC51FB68C4C001C082C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70795CC31FB68C4C001C082C /* Main.storyboard */; };
 		70795CC71FB68C4C001C082C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70795CC61FB68C4C001C082C /* Assets.xcassets */; };
 		70795CCA1FB68C4C001C082C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70795CC81FB68C4C001C082C /* LaunchScreen.storyboard */; };
@@ -29,9 +31,11 @@
 		5251C3C3D15DF62A3C2D696A /* Pods-iNote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iNote.release.xcconfig"; path = "Pods/Target Support Files/Pods-iNote/Pods-iNote.release.xcconfig"; sourceTree = "<group>"; };
 		7056E7B41FBC0BF3008B503C /* UINavigationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationExt.swift; sourceTree = "<group>"; };
 		706F6A7C1FBC2FE0000235E0 /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
+		706F6A7E1FBC3FF0000235E0 /* CompanyController+CreateCompanyControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompanyController+CreateCompanyControllerDelegate.swift"; sourceTree = "<group>"; };
+		706F6A801FBC411A000235E0 /* CompanyController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompanyController+UITableView.swift"; sourceTree = "<group>"; };
 		70795CBC1FB68C4B001C082C /* iNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70795CBF1FB68C4C001C082C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		70795CC11FB68C4C001C082C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		70795CC11FB68C4C001C082C /* CompanyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyController.swift; sourceTree = "<group>"; };
 		70795CC41FB68C4C001C082C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		70795CC61FB68C4C001C082C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70795CC91FB68C4C001C082C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -106,7 +110,7 @@
 		70795CD51FB6CF79001C082C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				70795CC11FB68C4C001C082C /* ViewController.swift */,
+				70795CC11FB68C4C001C082C /* CompanyController.swift */,
 				70795CD11FB6929B001C082C /* CustomNavController.swift */,
 				70795CDA1FB6D246001C082C /* CreateCompanyController.swift */,
 			);
@@ -134,6 +138,8 @@
 			children = (
 				70F7F4FC1FBAC82400EC1BC5 /* DateExt.swift */,
 				7056E7B41FBC0BF3008B503C /* UINavigationExt.swift */,
+				706F6A7E1FBC3FF0000235E0 /* CompanyController+CreateCompanyControllerDelegate.swift */,
+				706F6A801FBC411A000235E0 /* CompanyController+UITableView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -272,14 +278,16 @@
 			files = (
 				70CFD3F51FB893500072A4E9 /* INoteDataModel.xcdatamodeld in Sources */,
 				7056E7B51FBC0BF3008B503C /* UINavigationExt.swift in Sources */,
-				70795CC21FB68C4C001C082C /* ViewController.swift in Sources */,
+				70795CC21FB68C4C001C082C /* CompanyController.swift in Sources */,
 				70795CD41FB6A852001C082C /* UIColor+Theme.swift in Sources */,
+				706F6A811FBC411A000235E0 /* CompanyController+UITableView.swift in Sources */,
 				70CFD3F81FB8AA1E0072A4E9 /* CoreDataManager.swift in Sources */,
 				70795CD21FB6929B001C082C /* CustomNavController.swift in Sources */,
 				70795CD91FB6CF9A001C082C /* Company.swift in Sources */,
 				70795CC01FB68C4C001C082C /* AppDelegate.swift in Sources */,
 				706F6A7D1FBC2FE0000235E0 /* CompanyCell.swift in Sources */,
 				70795CDB1FB6D246001C082C /* CreateCompanyController.swift in Sources */,
+				706F6A7F1FBC3FF0000235E0 /* CompanyController+CreateCompanyControllerDelegate.swift in Sources */,
 				70F7F4FD1FBAC82400EC1BC5 /* DateExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
