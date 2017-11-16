@@ -17,7 +17,7 @@ class CompanyCell: UITableViewCell {
                     photoIv.image = UIImage(data: imageData)
                 }
                 
-                nameAndFoundedLbl.text = "\(company.name!) - Founded: \(company.founded?.formatDate() ?? Date().formatDate())"
+                nameAndFoundedLbl.text = "\(company.name ?? "") - Founded: \(company.founded?.formatDate() ?? Date().formatDate())"
                 nameAndFoundedLbl.textColor = UIColor.white
                 nameAndFoundedLbl.font = UIFont.systemFont(ofSize: 14)
             }

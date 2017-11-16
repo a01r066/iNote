@@ -60,7 +60,8 @@ extension CompanyController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let employeeController = EmployeeController()
         employeeController.company = companies[indexPath.row]
-        navigationController?.pushViewController(employeeController, animated: true)
+        let navController = UINavigationController(rootViewController: employeeController)
+        present(navController, animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

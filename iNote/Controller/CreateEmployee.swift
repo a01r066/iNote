@@ -14,6 +14,8 @@ protocol CreateEmployeeDelegate {
 }
 
 class CreateEmployee: UIViewController {
+    var company: Company?
+    
     var delegate: CreateEmployeeDelegate?
     
     let viewContainer: UIView = {
@@ -36,19 +38,27 @@ class CreateEmployee: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupCancelBtItem()
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
         setupUI()
     }
     
+    // MARK: - you can note here
     @objc func handleSave(){
-        guard let name = nameTf.text else { return }
-        let result = CoreDataManager.shared.createEmployee(name: name)
+        guard let employeeName = nameTf.text else { return }
+        guard let company = self.company else { return }
+        
+        let result = CoreDataManager.shared.createEmployee(employeeName: employeeName, company: company)
         if let err = result.1 {
             print(err)
         } else {
-            let employee = result.0
-            delegate?.didAddEmployee(employee: employee!)
-            navigationController?.popViewController(animated: true)
+            dismiss(animated: true, completion: {
+                guard let employee = result.0 else { return }
+                self.delegate?.didAddEmployee(employee: employee)
+            })
+//            navigationController?.popViewController(animated: true)
         }
     }
     

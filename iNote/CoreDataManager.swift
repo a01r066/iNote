@@ -6,7 +6,7 @@
 //  Copyright © 2017 Thanh Minh. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 struct CoreDataManager {
@@ -36,29 +36,32 @@ struct CoreDataManager {
         }
     }
     
-    func fetchEmployess() -> ([Employee]?, Error?) {
+    func createEmployee(employeeName: String, company: Company) -> (Employee?, Error?) {
         let context = persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<Employee>(entityName: "Employee")
         
-        do {
-            let employees = try context.fetch(fetchRequest)
-            return (employees, nil)
-        } catch let err {
-            return (nil, err)
-        }
-    }
-    
-    func createEmployee(name: String) -> (Employee?, Error?) {
-        let context = persistentContainer.viewContext
-        let employee = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context)
+        //create an employee
+        let employee = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context) as! Employee
         
-        employee.setValue(name, forKey: "name")
+        employee.company = company
+        
+        employee.setValue(employeeName, forKey: "name")
+        
+        let employeeInfo = NSEntityDescription.insertNewObject(forEntityName: "EmployeeInfo", into: context) as! EmployeeInfo
+        
+        employeeInfo.taxId = "456"
+        
+        //        employeeInfo.setValue("456", forKey: "taxId")
+        
+        employee.employeeInfo = employeeInfo
         
         do {
             try context.save()
-            return (employee as? Employee, nil)
-        } catch let saveErr {
-            return (nil, saveErr)
+            // save succeeds
+            return (employee, nil)
+        } catch let err {
+            print("Failed to create employee:", err)
+            return (nil, err)
         }
+        
     }
 }
