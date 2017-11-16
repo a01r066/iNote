@@ -128,7 +128,8 @@ class CreateCompanyController: UIViewController, UINavigationControllerDelegate,
         
         view.backgroundColor = UIColor.darkBlue
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleBack))
+        self.setupCancelBtItem()
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
     }
     
@@ -193,10 +194,6 @@ class CreateCompanyController: UIViewController, UINavigationControllerDelegate,
         } catch let saveErr {
             fatalError("Save error. \(saveErr)")
         }
-    }
-    
-    @objc func handleBack(){
-        dismiss(animated: true, completion: nil)
     }
     
     func setupUI(){

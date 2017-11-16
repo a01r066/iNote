@@ -26,7 +26,8 @@ class CompanyController: UITableViewController {
         tableView.backgroundColor = .darkBlue
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "plus")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleAddCompany))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "plus")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleAddCompany))
+        setupAddBtItem(selector: #selector(handleAddCompany))
         
         tableView.tableFooterView = UIView()
     }
@@ -42,9 +43,10 @@ class CompanyController: UITableViewController {
         
         // cach 2
         // make row animation when delete
-        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Company.fetchRequest())
+        let companyBatchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Company.fetchRequest())
+        
         do {
-            try context.execute(batchDeleteRequest)
+            try context.execute(companyBatchDeleteRequest)
             
             var indexPathsToRemove = [IndexPath]([])
             for(index, _) in companies.enumerated(){
@@ -92,7 +94,7 @@ class CompanyController: UITableViewController {
         createCompanyController.delegate = self
         createCompanyController.company = company
         
-        let navController = CustomNavController(rootViewController: createCompanyController)
+        let navController = UINavigationController(rootViewController: createCompanyController)
         present(navController, animated: true, completion: nil)
         
     }
@@ -100,7 +102,7 @@ class CompanyController: UITableViewController {
     @objc func handleAddCompany(){
         let createCompanyVC = CreateCompanyController()
         createCompanyVC.delegate = self
-        let navController = CustomNavController(rootViewController: createCompanyVC)
+        let navController = UINavigationController(rootViewController: createCompanyVC)
         present(navController, animated: true, completion: nil)
     }
 }

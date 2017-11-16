@@ -32,7 +32,33 @@ struct CoreDataManager {
             let companies = try context.fetch(fetchRequest)
             return companies
         } catch let fetchErr {
-            fatalError("Fetch store failed. \(fetchErr)")
+            fatalError("Fetch company failed. \(fetchErr)")
+        }
+    }
+    
+    func fetchEmployess() -> ([Employee]?, Error?) {
+        let context = persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<Employee>(entityName: "Employee")
+        
+        do {
+            let employees = try context.fetch(fetchRequest)
+            return (employees, nil)
+        } catch let err {
+            return (nil, err)
+        }
+    }
+    
+    func createEmployee(name: String) -> (Employee?, Error?) {
+        let context = persistentContainer.viewContext
+        let employee = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context)
+        
+        employee.setValue(name, forKey: "name")
+        
+        do {
+            try context.save()
+            return (employee as? Employee, nil)
+        } catch let saveErr {
+            return (nil, saveErr)
         }
     }
 }
