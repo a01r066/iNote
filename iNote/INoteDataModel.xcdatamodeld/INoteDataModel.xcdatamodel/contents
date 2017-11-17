@@ -20,12 +20,13 @@
     <entity name="EmployeeInfo" representedClassName="EmployeeInfo" syncable="YES" codeGenerationType="class">
         <attribute name="birthday" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="taxId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="employee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Employee" inverseName="employeeInfo" inverseEntity="Employee" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Address" positionX="261" positionY="-306" width="128" height="88"/>
         <element name="Company" positionX="-117" positionY="-225" width="128" height="103"/>
         <element name="Employee" positionX="72" positionY="-225" width="128" height="103"/>
-        <element name="EmployeeInfo" positionX="259" positionY="-189" width="128" height="88"/>
-        <element name="Address" positionX="261" positionY="-306" width="128" height="88"/>
+        <element name="EmployeeInfo" positionX="259" positionY="-189" width="128" height="105"/>
     </elements>
 </model>

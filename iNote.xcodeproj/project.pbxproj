@@ -23,9 +23,11 @@
 		70795CD41FB6A852001C082C /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70795CD31FB6A852001C082C /* UIColor+Theme.swift */; };
 		70795CD91FB6CF9A001C082C /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70795CD81FB6CF99001C082C /* Company.swift */; };
 		70795CDB1FB6D246001C082C /* CreateCompanyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70795CDA1FB6D246001C082C /* CreateCompanyController.swift */; };
+		70935B181FBDDE3200A1F10A /* IndentedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70935B171FBDDE3200A1F10A /* IndentedLabel.swift */; };
 		70CFD3F51FB893500072A4E9 /* INoteDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70CFD3F31FB8934F0072A4E9 /* INoteDataModel.xcdatamodeld */; };
 		70CFD3F81FB8AA1E0072A4E9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CFD3F71FB8AA1E0072A4E9 /* CoreDataManager.swift */; };
 		70F7F4FD1FBAC82400EC1BC5 /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7F4FC1FBAC82400EC1BC5 /* DateExt.swift */; };
+		70FA6E6D1FBEB18F0049AD77 /* EmployeeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FA6E6C1FBEB18F0049AD77 /* EmployeeType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,9 +50,11 @@
 		70795CD31FB6A852001C082C /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
 		70795CD81FB6CF99001C082C /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		70795CDA1FB6D246001C082C /* CreateCompanyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyController.swift; sourceTree = "<group>"; };
+		70935B171FBDDE3200A1F10A /* IndentedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndentedLabel.swift; sourceTree = "<group>"; };
 		70CFD3F41FB8934F0072A4E9 /* INoteDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = INoteDataModel.xcdatamodel; sourceTree = "<group>"; };
 		70CFD3F71FB8AA1E0072A4E9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		70F7F4FC1FBAC82400EC1BC5 /* DateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
+		70FA6E6C1FBEB18F0049AD77 /* EmployeeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeType.swift; sourceTree = "<group>"; };
 		98E2624EE6E138423F5DA75F /* Pods-iNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iNote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iNote/Pods-iNote.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,6 +150,8 @@
 				706F6A7E1FBC3FF0000235E0 /* CompanyController+CreateCompanyControllerDelegate.swift */,
 				706F6A801FBC411A000235E0 /* CompanyController+UITableView.swift */,
 				706F6A821FBC7CC7000235E0 /* UIViewControllerExt.swift */,
+				70935B171FBDDE3200A1F10A /* IndentedLabel.swift */,
+				70FA6E6C1FBEB18F0049AD77 /* EmployeeType.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -283,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70CFD3F51FB893500072A4E9 /* INoteDataModel.xcdatamodeld in Sources */,
+				70FA6E6D1FBEB18F0049AD77 /* EmployeeType.swift in Sources */,
 				706F6A851FBC83DC000235E0 /* EmployeeController.swift in Sources */,
 				7056E7B51FBC0BF3008B503C /* UINavigationExt.swift in Sources */,
 				70795CC21FB68C4C001C082C /* CompanyController.swift in Sources */,
@@ -291,6 +298,7 @@
 				70CFD3F81FB8AA1E0072A4E9 /* CoreDataManager.swift in Sources */,
 				70795CD91FB6CF9A001C082C /* Company.swift in Sources */,
 				70795CC01FB68C4C001C082C /* AppDelegate.swift in Sources */,
+				70935B181FBDDE3200A1F10A /* IndentedLabel.swift in Sources */,
 				706F6A7D1FBC2FE0000235E0 /* CompanyCell.swift in Sources */,
 				706F6A831FBC7CC7000235E0 /* UIViewControllerExt.swift in Sources */,
 				706F6A871FBC8601000235E0 /* CreateEmployee.swift in Sources */,
