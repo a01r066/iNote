@@ -1,0 +1,38 @@
+# Flutter Flavorizr Configuration
+# Run: dart run flutter_flavorizr -p firebase:android,firebase:ios,android:buildGradle,android:androidManifest,ios:xcconfig,ios:buildTargets,ios:schema,flutter:flavors,flutter:app,flutter:pages
+
+app:
+  android:
+    flavorDimensions: "flavor-type"
+  ios: {}
+
+flavors:
+  dev:
+    app:
+      name: "iNote DEV"
+    android:
+      applicationId: "store.inoteapp.inoteapp.dev"
+      icon: "assets/icons/app_icon_dev.png"
+    ios:
+      bundleId: "store.inoteapp.inoteapp.dev"
+      icon: "assets/icons/app_icon_dev.png"
+    firebase:
+      android:
+        config: ".firebase/dev/google-services.json"
+      ios:
+        config: ".firebase/dev/GoogleService-Info.plist"
+
+  prod:
+    app:
+      name: "iNote App"
+    android:
+      applicationId: "store.inoteapp.inoteapp"
+      icon: "assets/icons/app_icon.png"
+    ios:
+      bundleId: "store.inoteapp.inoteapp"
+      icon: "assets/icons/app_icon.png"
+    firebase:
+      android:
+        config: ".firebase/prod/google-services.json"
+      ios:
+        config: ".firebase/prod/GoogleService-Info.plist"
