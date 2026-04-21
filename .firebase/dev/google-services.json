@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "726443673897",
-    "project_id": "inoteprod",
-    "storage_bucket": "inoteprod.firebasestorage.app"
+    "project_number": "474703516179",
+    "project_id": "inotedev-29330",
+    "storage_bucket": "inotedev-29330.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:726443673897:android:4626a6a3a87c342adc4f38",
+        "mobilesdk_app_id": "1:474703516179:android:aed924b7a089046b6fe5e6",
         "android_client_info": {
-          "package_name": "store.inoteapp.inoteapp"
+          "package_name": "store.inoteapp.inoteapp.dev"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBHmUfDN0n9W4kEvhUh1I07ujovXCjhdmA"
+          "current_key": "AIzaSyDWE7AvSyuj0yxwp8xFWngCeulFEpiFrig"
         }
       ],
       "services": {

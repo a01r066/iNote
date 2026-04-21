@@ -42,7 +42,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDWE7AvSyuj0yxwp8xFWngCeulFEpiFrig',
-    appId: '1:474703516179:android:81a3240431e4560f6fe5e6',
+    appId: '1:474703516179:android:aed924b7a089046b6fe5e6',
     messagingSenderId: '474703516179',
     projectId: 'inotedev-29330',
     storageBucket: 'inotedev-29330.firebasestorage.app',
@@ -50,11 +50,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBwVIXD4cd5GscOBipdQ7cHNKWhAXYDWzA',
-    appId: '1:474703516179:ios:6ff20e2401fa0f806fe5e6',
+    appId: '1:474703516179:ios:69bbfb9b8ea2b3006fe5e6',
     messagingSenderId: '474703516179',
     projectId: 'inotedev-29330',
     storageBucket: 'inotedev-29330.firebasestorage.app',
-    iosBundleId: 'store.inoteapp.inoteapp',
+    iosBundleId: 'store.inoteapp.inoteapp.dev',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(

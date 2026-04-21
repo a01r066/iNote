@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyBwVIXD4cd5GscOBipdQ7cHNKWhAXYDWzA</string>
+	<string>AIzaSyDL56RRp-drEWQyF3AmyR8lKehSbJ-VCP0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>474703516179</string>
+	<string>726443673897</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>store.inoteapp.inoteapp</string>
 	<key>PROJECT_ID</key>
-	<string>inotedev-29330</string>
+	<string>inoteprod</string>
 	<key>STORAGE_BUCKET</key>
-	<string>inotedev-29330.firebasestorage.app</string>
+	<string>inoteprod.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:474703516179:ios:6ff20e2401fa0f806fe5e6</string>
+	<string>1:726443673897:ios:5a884c1df6ccae83dc4f38</string>
 </dict>
 </plist>

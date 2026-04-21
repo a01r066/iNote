@@ -28,7 +28,7 @@ Future<void> bootstrap(FirebaseOptions firebaseOptions) async {
       );
 
       // Initialize Firebase
-      await Firebase.initializeApp(options: firebaseOptions);
+      await Firebase.initializeApp(options: firebaseOptions, name: 'iNote');
 
       // Run app
       runApp(
